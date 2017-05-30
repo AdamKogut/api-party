@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {NavLink} from 'react-router-dom'
+import {NavLink, Switch, Route} from 'react-router-dom'
 import logo from './logo.svg';
 import './App.css';
 
@@ -18,6 +18,12 @@ class App extends Component {
             <li><NavLink to='/homework'>Homework API</NavLink></li>
           </ul>
         </div>
+        <Switch>
+          <Route path='/github' render={()=><h1>Git outta here</h1>}/>
+          <Route path='/nasa' render={()=>}/>
+          <Route path='/homework' render={()=><h1>Git outta here</h1>}/>
+          <Route render={()=><p>To get started, click one of the links above</p>}/>
+        </Switch>
       </div>
     );
   }
