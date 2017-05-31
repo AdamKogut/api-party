@@ -1,0 +1,7 @@
+.pokedex-user img{
+    border-radius: 50%;
+    height: 200px;
+}
+.pokedex-user h3{
+    color: #999;
+}

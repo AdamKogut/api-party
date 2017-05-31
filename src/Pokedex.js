@@ -15,7 +15,7 @@ class Pokedex extends Component{
 
     handleSubmit=(ev)=>{
         ev.preventDefault()
-        this.props.history.push(`/pokemon/${this.state.username}`)
+        this.props.history.push(`/pokedex/${this.state.username}`)
     }
     render(){
         return(
@@ -26,11 +26,11 @@ class Pokedex extends Component{
                         <input type="text" value={this.state.username} onChange={this.handleChange}/>
                     </div>
                     <div>
-                        <button type="submit">Look up Github user</button>
+                        <button type="submit">Look up Pokemon by name or number</button>
                     </div>
                 </form>
                 <Route path='/pokedex/:username' component={PokedexPokemon}/>
-                <Route exact path='/pokedex' render={()=><h3>Please enter a username to search on github</h3>}/>
+                <Route exact path='/pokedex' render={()=><h3>Search Pokemon by name or number</h3>}/>
             </div>
         )
     }

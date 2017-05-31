@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import './GithubUser.css'
+import './PokedexPokemon.css'
 import {Route} from 'react-router-dom'
 
 class PokedexPokemon extends Component{
@@ -11,6 +11,7 @@ class PokedexPokemon extends Component{
             weight:'',
             types:'',
             html_url:'',
+            sprites:'',
         }
     }
     constructor(props){
@@ -21,7 +22,7 @@ class PokedexPokemon extends Component{
     fetchUserData=(props)=>{
         fetch(`https://pokeapi.co/api/v2/pokemon/${props.match.params.username}`)
             .then(response=>response.json())
-            .then(user=>this.setState({user}))
+            .then(pokemon=>this.setState({pokemon}))
     }
 
     componentWillReceiveProps=(nextProps)=>{
@@ -32,17 +33,20 @@ class PokedexPokemon extends Component{
     }
 
     render(){
-        const {user}=this.state
+        const {pokemon}=this.state
         return(
-            <div className="github-user">
-                <img src={user.avatar_url} alt="user"/>
-                <h2>{user.login}</h2>
-                <h3>followers: {user.followers}</h3>
-                <h3>following: {user.following}</h3>
-                <a href={user.html_url} target="_">Link to {user.login}'s profile</a>
+            <div className="pokedex-user">
+                <img src={pokemon.sprites.front_default} alt={pokemon.name}/>
+                <h2>Id: {pokemon.id}</h2>
+                <h2>Name: {pokemon.name}</h2>
+                <h3>Height: {pokemon.height}</h3>
+                <h3>Weight: {pokemon.weight}</h3>
+                <h3>Types: </h3>
+
             </div>
         )
     }
 }
+
 
 export default PokedexPokemon
