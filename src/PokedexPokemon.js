@@ -1,0 +1,48 @@
+import React,{Component} from 'react'
+import './GithubUser.css'
+import {Route} from 'react-router-dom'
+
+class PokedexPokemon extends Component{
+    state={
+        pokemon:{
+            id:'',
+            name:'',
+            height:'',
+            weight:'',
+            types:'',
+            html_url:'',
+        }
+    }
+    constructor(props){
+        super(props)
+        this.fetchUserData(props)
+    }
+
+    fetchUserData=(props)=>{
+        fetch(`https://pokeapi.co/api/v2/pokemon/${props.match.params.username}`)
+            .then(response=>response.json())
+            .then(user=>this.setState({user}))
+    }
+
+    componentWillReceiveProps=(nextProps)=>{
+        const locationChanged=nextProps.location!==this.props.location
+        if(locationChanged){
+            this.fetchUserData(nextProps)
+        }
+    }
+
+    render(){
+        const {user}=this.state
+        return(
+            <div className="github-user">
+                <img src={user.avatar_url} alt="user"/>
+                <h2>{user.login}</h2>
+                <h3>followers: {user.followers}</h3>
+                <h3>following: {user.following}</h3>
+                <a href={user.html_url} target="_">Link to {user.login}'s profile</a>
+            </div>
+        )
+    }
+}
+
+export default PokedexPokemon
