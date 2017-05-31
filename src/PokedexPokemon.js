@@ -23,6 +23,7 @@ class PokedexPokemon extends Component{
         fetch(`https://pokeapi.co/api/v2/pokemon/${props.match.params.username}`)
             .then(response=>response.json())
             .then(pokemon=>this.setState({pokemon}))
+            .then(this.getTypes)
     }
 
     componentWillReceiveProps=(nextProps)=>{
@@ -41,7 +42,6 @@ class PokedexPokemon extends Component{
                 <h2>Name: {pokemon.name}</h2>
                 <h3>Height: {pokemon.height}</h3>
                 <h3>Weight: {pokemon.weight}</h3>
-                <h3>Types: </h3>
 
             </div>
         )
